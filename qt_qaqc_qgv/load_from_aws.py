@@ -182,7 +182,7 @@ while(1):
                         # os.remove(filename)
                         remove_indices.append(i)
                         i += 1
-                        upload_file(filename, 'torngats', object_name=finished_path)
+                        upload_file(filename, curr_id.lower(), object_name=finished_path)
                         s3.Object('torngats', old_path).delete()
                     for index in remove_indices:
                         os.remove(filenames[index])
@@ -260,7 +260,7 @@ while(1):
         # os.remove(filename)
         remove_indices.append(i)
         i += 1
-        upload_file(filename, 'torngats', object_name=finished_path)
+        upload_file(filename, curr_id.lower(), object_name=finished_path)
         s3.Object('torngats', old_path).delete()
     for index in remove_indices:
         os.remove(filenames[index])

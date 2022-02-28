@@ -4,4 +4,4 @@ echo "UserId: $1";
 "conda init bash";
 "conda activate";
 echo $PATH;
-python3 load_from_aws.py --input $1;
+python3 ../qt_qaqc_qgv/load_from_aws.py --input $1;

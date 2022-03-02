@@ -111,9 +111,13 @@ im_dict = {}
 
 prev_text = ""
 download_file = True
+
+print("Starting up loop...")
+
 while(1):
     for object_summary in all_tasks:
         key = object_summary.key
+        print("Key : ", key)
         if ".txt" not in key:
             continue
 
@@ -129,7 +133,12 @@ while(1):
             prev_text = key_split[-1]
 
             tmp_txt = key_split[-1]
+            print("Downloading text file : ", tmp_text)
+
             s3_client.download_file('torngats', key, tmp_txt)
+
+            print("Finished downloading text file : ", tmp_text)
+
             download_file = False
 
             with open(txt_file, 'w') as f_write:
@@ -143,7 +152,7 @@ while(1):
                         f_write.write(camera.replace(" ", "") + "_" + im_name + "\n")
 
             f_write.close()
-    
+
             # with open(txt_file, 'w') as f_write:
             with open(tmp_txt, 'r') as f_read:
                 for line in f_read.readlines():
@@ -155,12 +164,16 @@ while(1):
 
                     im_path = line
                     mask_path = "Masks/" + dataset + "/" + camera + "/" + im_name + ".png"
-                    
+
+                    print("Downloading image : ", im_name)
+
                     local_im_path = "../qt_qaqc_qgv" + "/" + "tmp_im/" + camera.replace(" ", "") + "_" + im_name + ".jpg"
                     local_mask_path = "../qt_qaqc_qgv" + "/" + "tmp_mask/" + camera.replace(" ", "") + "_" + im_name + ".png"
 
                     s3_client.download_file('torngats', mask_path, local_mask_path)
                     s3_client.download_file('torngats', im_path, local_im_path)
+
+                    print("Finished downloading image : ", im_name)
                     # f_write.write(camera.replace(" ", "") + "_" + im_name + "\n")
 
                     mask_dict[camera.replace(" ", "") + "_" + im_name] = mask_path
@@ -237,7 +250,7 @@ while(1):
             os.remove(output_path)
 
     filenames = glob.glob("../qt_qaqc_qgv" + "/" + "tmp_im" + "/*.jpg")
-    
+
     tasks_filenames = glob.glob("../qt_qaqc_qgv" + "/" + "tasks" + "/*.txt")
     if not len(tasks_filenames) >= 2:
         if len(filenames) < 3:
@@ -266,7 +279,7 @@ while(1):
         os.remove(filenames[index])
 
 
-    
+
     time.sleep(5)
 
 #curr_ctr = 0

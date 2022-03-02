@@ -133,7 +133,7 @@ while(1):
             prev_text = key_split[-1]
 
             tmp_txt = key_split[-1]
-            print("Downloading text file : ", tmp_text)
+            print("Downloading text file : ", tmp_txt)
 
             s3_client.download_file('torngats', key, tmp_txt)
 

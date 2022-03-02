@@ -137,7 +137,7 @@ while(1):
 
             s3_client.download_file('torngats', key, tmp_txt)
 
-            print("Finished downloading text file : ", tmp_text)
+            print("Finished downloading text file : ", tmp_txt)
 
             download_file = False
 

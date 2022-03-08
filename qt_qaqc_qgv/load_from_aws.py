@@ -117,7 +117,7 @@ print("Starting up loop...")
 while(1):
     for object_summary in all_tasks:
         key = object_summary.key
-        print("Key : ", key)
+        # print("Key : ", key)
         if ".txt" not in key:
             continue
 
@@ -253,7 +253,7 @@ while(1):
 
     tasks_filenames = glob.glob("../qt_qaqc_qgv" + "/" + "tasks" + "/*.txt")
     if not len(tasks_filenames) >= 2:
-        if len(filenames) < 3:
+        if len(filenames) < 7:
             # print("Next Task!")
             download_file = True
             continue
